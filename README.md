@@ -20,7 +20,7 @@ This software is splitted in 2 - parts.
 1. DNS server
 2. Agent
 
-![alt text](Architecture.png  "Architecture")
+![alt text](https://raw.githubusercontent.com/0x09AL/DNS-Persist/master/images/Picture-5.png "Architecture")
 
 ## Features
 ### Persistence mechanisms
@@ -63,6 +63,18 @@ I did it this way because you do not need to buy a domain name.
 ```
 
 ## Screenshots
+1. Picture-1
+![alt text](https://raw.githubusercontent.com/0x09AL/DNS-Persist/master/images/Picture-1.png "Picture-1")
 
+2. Picture-2
+![alt text](https://raw.githubusercontent.com/0x09AL/DNS-Persist/master/images/Picture-2.png "Picture-2")
 
+3. Picture-3
+![alt text](https://raw.githubusercontent.com/0x09AL/DNS-Persist/master/images/Picture-3.png "Picture-3")
+
+4. Picture-4
+![alt text](https://raw.githubusercontent.com/0x09AL/DNS-Persist/master/images/Picture-4.png "Picture-4")
+
+5. Picture-5
+![alt text](https://raw.githubusercontent.com/0x09AL/DNS-Persist/master/images/Picture-5.png "Picture-5")
 
