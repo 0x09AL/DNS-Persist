@@ -1,0 +1,14 @@
+*.pyc
+*.exe
+*.pdb
+*.sdf
+*.ipch
+*.ilk
+*.obj
+*.tlog
+*.txt
+*.cache
+*.idb
+*.manifest
+*.log
+*.suo
