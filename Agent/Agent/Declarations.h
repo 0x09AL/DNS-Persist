@@ -15,7 +15,7 @@ using std::cout;
 #define MAX_CMD_LENGTH 2048
 #define PROBE "PROBE"
 #define CMD "CMD"
-#define HOST "10.240.0.122"
+#define HOST "xxx.xxx.xxx.xxx"
 #define MAX_DATA_LENGTH 1048576
 
 #define START "{!"
