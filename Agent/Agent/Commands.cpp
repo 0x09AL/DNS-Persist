@@ -29,18 +29,21 @@ LPCSTR SystemInfo(){
 	return lpResponse;
 }
 
-LPSTR AgentName(){
-	
-	const SIZE_T size = 8;
-	DWORD random;
-	char buffer[size+1] = {0};
-	const char* const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789" ;
-	for(int i=0;i<size;i++){
-		random = rand() % 35;
-		buffer[i] = characters[random];
-	}
+char agentName[64];
+static const char alphanum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
+int stringLength = sizeof(alphanum) - 1;
 
-	return buffer;
+LPSTR AgentName(){
+	DWORD size = 9;
+	if(strlen(agentName)==0){
+		std::string tempString;
+		for(unsigned int i = 0; i < size-1; ++i)
+		{
+			tempString += alphanum[rand() % stringLength];
+		}
+		StringCbPrintf(agentName,size,"%s",tempString.c_str());
+	}
+	return agentName;
 }
 
 LPCSTR ExecuteShellcode(){
