@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
+#include <ctime>
 #include "resource.h"
 #include "Shlwapi.h"
 
