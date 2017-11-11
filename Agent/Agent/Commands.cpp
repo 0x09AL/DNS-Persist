@@ -15,9 +15,9 @@ LPCSTR SystemInfo(){
 	SYSTEM_INFO siSysInfo;
 	GetSystemInfo(&siSysInfo); 
 
-	DWORD computerNameSize = MAX_COMPUTERNAME_LENGTH;
-	LPSTR computerName = new CHAR[MAX_COMPUTERNAME_LENGTH+1];
-	GetComputerNameEx(ComputerNameDnsHostname,computerName,&computerNameSize);
+	LPSTR computerName = new CHAR[MAX_COMPUTERNAME_LENGTH + 1];
+	DWORD len = MAX_COMPUTERNAME_LENGTH + 1;
+	GetComputerNameA(computerName,&len);
 	
 	DWORD usernameSize = 104;
 	LPSTR username = new CHAR[104+1];
