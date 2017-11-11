@@ -37,6 +37,7 @@ LPSTR AgentName(){
 	DWORD size = 9;
 	if(strlen(agentName)==0){
 		std::string tempString;
+		srand (time(NULL));
 		for(unsigned int i = 0; i < size-1; ++i)
 		{
 			tempString += alphanum[rand() % stringLength];
