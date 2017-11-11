@@ -10,13 +10,13 @@ DO NOT USE THIS SOFTWARE FOR ILLEGALL PURPOSES.
 THE AUTHOR DOES NOT KEEP ANY RESPONSIBILITY FOR ANY MISUSE OF THE CODE PROVIDED HERE.
 
 ## Did I reinvent the wheel ?
-There are a lot of great work on DNS C2 but I created this software to be more focused on the persistence part. I'm no expert in C++ and this is my first "real program" in C++ (so expect some cringe worthy code). 
+There is a lot of great work on DNS C2 but I created this software to be more focused on the persistence part. I'm no expert in C++ and this is my first "real program" in C++ (so expect some cringe worthy code). 
 
 Suggestions about features and improvements are open.
 
 ## Architecture
 
-This software is splitted in 2 - parts.
+There are two main parts:
 1. DNS server
 2. Agent
 
