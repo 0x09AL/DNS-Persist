@@ -19,6 +19,6 @@ LPCSTR HandleCommand(LPCSTR command){
 		return ExecuteShellcode();
 	}
 
-	return "ERROR";
+	return "ERROR HANDLING COMMAND";
 
 }

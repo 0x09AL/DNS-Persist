@@ -12,3 +12,5 @@
 *.manifest
 *.log
 *.suo
+Agent/Agent/Release
+Agent/Agent/Debug
