@@ -56,7 +56,7 @@ I used Visual Studio 2010 to code the agent so importing and compiling it should
 
 Keep in mind to change the DOMAIN_NAME variable in Declarations.h, to match your domain name.
 
-The domain nameserver should point to the DNS-Persist IP address.
+The domain nameservers should point to the DNS-Persist IP address.
 
 
 ```
