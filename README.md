@@ -54,12 +54,13 @@ By default a DNS server on port 53 will be started. You can change that on the s
 ### Agent
 I used Visual Studio 2010 to code the agent so importing and compiling it should be fairly easy.
 
-Keep in mind to change the HOST variable in Declarations.h, to match your DNS server IP. 
+Keep in mind to change the DOMAIN_NAME variable in Declarations.h, to match your domain name.
 
-I did it this way because you do not need to buy a domain name.
+The domain nameserver should point to the DNS-Persist IP address.
+
 
 ```
-#define HOST XXX.xxx.XXX.xxx
+#define DOMAIN_NAME "example.com"
 ```
 
 ## Screenshots
