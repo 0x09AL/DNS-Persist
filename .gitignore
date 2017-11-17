@@ -14,3 +14,4 @@
 *.suo
 Agent/Agent/Release
 Agent/Agent/Debug
+.idea/

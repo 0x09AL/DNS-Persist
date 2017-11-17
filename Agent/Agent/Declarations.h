@@ -22,7 +22,7 @@ using std::cout;
 #define PROBE "PROBE"
 #define CMD "CMD"
 
-#define DOMAIN_NAME "example.com"
+#define DOMAIN_NAME "infogen.al"
 #define MAX_DATA_LENGTH 1048576
 
 #define START "{!"

