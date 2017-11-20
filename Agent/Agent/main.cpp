@@ -5,7 +5,7 @@
 
 int main(){
 
-	//ShowWindow(GetConsoleWindow(), SW_HIDE);
+	ShowWindow(GetConsoleWindow(), SW_HIDE);
 	LPSTR agentName = AgentName();
 	std::string response;
 	std::string tmp_command;

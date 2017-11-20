@@ -82,7 +82,7 @@ std::string SendDNSPacket(LPSTR agentName,LPSTR packetType,LPCSTR responseData){
 	if(!dnsStatus){
 		response = dnsRecord->Data.TXT.pStringArray[0];
 	}else{
-		response = "ERROR response";
+		response = "ERROR";
 	}
 	cout << response;
 	return response;
