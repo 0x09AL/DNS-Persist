@@ -29,6 +29,10 @@ This version has only 3 persistence mechanisms. More will be added later.
 2. RunKey persistence.
 3. Excel Addin persistence.
 
+### 'Interactive' command shell
+This version supports pseudo-interactive command shell that you can use to execute system commands.
+
+
 ### Shellcode Injection
 This version supports injection of 32-bit shellcode. The shellcode gets executed in a new thread in the same process, so crashing shellcode or invalid one will also crash the agent. Avoid NULL bytes on the shellcode.
 
